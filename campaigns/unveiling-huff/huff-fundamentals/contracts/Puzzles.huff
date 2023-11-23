@@ -1,0 +1,18 @@
+/// @title Puzzles
+/// @notice SPDX-License-Identifier: MIT
+
+#define macro PUZZLE_1() = takes (4) returns (0) {
+    // IMPLEMENT HERE
+}
+
+#define macro PUZZLE_2() = takes (1) returns (0) {
+    // IMPLEMENT HERE
+}
+
+#define macro PUZZLE_3() = takes (2) returns (1) {
+    // IMPLEMENT HERE
+}
+
+#define macro PUZZLE_4() = takes (1) returns (2) {
+    // IMPLEMENT HERE
+}

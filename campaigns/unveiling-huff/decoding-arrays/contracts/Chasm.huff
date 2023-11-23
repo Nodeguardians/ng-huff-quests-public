@@ -1,0 +1,37 @@
+/// @title Contract
+/// @notice SPDX-License-Identifier: MIT
+/// @notice A contract exposing Operations.huff functions
+
+#include "./Operations.huff"
+
+// Interface
+#define function definePath(uint256[]) nonpayable returns ()
+#define function getPath() view returns (uint256[])
+#define function travelPath(uint256, uint256) view returns ()
+
+/// @notice Main Function Dispatcher
+#define macro DISPATCHER_MAIN() = takes (1) returns (1) {
+    // Input Stack: [fn_selector]
+    dup1 __FUNC_SIG(definePath) eq definePathJump jumpi
+    dup1 __FUNC_SIG(getPath)    eq getPathJump    jumpi
+    dup1 __FUNC_SIG(travelPath) eq travelPathJump jumpi
+
+    // Bubble up to parent macro
+    no_match jump
+
+    definePathJump:
+        DEFINE_PATH()
+    getPathJump:
+        GET_PATH()
+    travelPathJump:
+        TRAVEL_PATH()
+
+    no_match:
+        0x00 0x00 revert
+}
+
+#define macro MAIN() = takes (0) returns (0) {
+    0x00 calldataload 
+    0xe0 shr            // [fn_selector]
+    DISPATCHER_MAIN()
+}

@@ -1,0 +1,24 @@
+{
+    "private": true,
+    "name": "ng-huff-quests",
+    "version": "0.1.0",
+    "repository": "https://github.com/Nodeguardians/ng-huff-quests.git",
+    "dependencies": {
+        "chai": "^4.3.10",
+        "mocha": "^10.2.0"
+    },
+    "workspaces": [
+        "campaigns/**"
+    ],
+    "scripts": {
+        "prepare": "husky install",
+        "test": "mocha && npm run test --workspaces",
+        "test:links": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' -exec npx markdown-link-check --quiet {} \\;",
+        "test:deployment": "mocha --timeout 10000"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^18.4.0",
+        "@commitlint/config-conventional": "^18.4.0",
+        "husky": "^8.0.3"
+    }
+}

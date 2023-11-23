@@ -1,0 +1,9 @@
+/// @title TownDefense
+/// @notice SPDX-License-Identifier: MIT
+
+#include "./Orders.huff"
+#include "./interfaces/ITownDefense.huff"
+
+#define macro MAIN() = takes (0) returns (0) {
+    // IMPLEMENT HERE
+}

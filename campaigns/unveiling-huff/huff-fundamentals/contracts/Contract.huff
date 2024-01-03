@@ -1,0 +1,66 @@
+/// @title Contract
+/// @notice SPDX-License-Identifier: MIT
+/// @notice A contract exposing Puzzles.huff functions
+
+#include "./Puzzles.huff"
+
+// Interface
+#define function puzzle1(uint256, uint256, uint256, uint256) view returns (uint256)
+#define function puzzle2(uint256) view returns (uint256)
+#define function puzzle3(uint256, uint256) view returns (uint256)
+#define function puzzle4(uint256) view returns (uint256, uint256)
+
+/// @notice Main Function Dispatcher
+#define macro DISPATCHER_MAIN() = takes (1) returns (1) {
+    // Input Stack: [function_selector]
+
+    dup1 __FUNC_SIG(puzzle1) eq puzzle1 jumpi
+    dup1 __FUNC_SIG(puzzle2) eq puzzle2 jumpi
+    dup1 __FUNC_SIG(puzzle3) eq puzzle3 jumpi
+    dup1 __FUNC_SIG(puzzle4) eq puzzle4 jumpi
+
+    // Bubble up to parent macro
+    no_match jump
+
+    puzzle1:
+        0x04 calldataload   // [z]
+        0x24 calldataload   // [y, z]
+        0x44 calldataload   // [x, y, z]
+        0x64 calldataload   // [w, x, y, z]
+
+        PUZZLE_1()          // [r]
+
+        0x00 mstore         // []
+        0x20 0x00 return
+    puzzle2:
+        0x04 calldataload   // [x]
+
+        PUZZLE_2()          // [r]
+
+        0x00 mstore         // []
+        0x20 0x00 return
+    puzzle3:
+        0x04 calldataload   // [y]
+        0x24 calldataload   // [x, y]
+
+        PUZZLE_3()          // [r]
+
+        0x00 mstore         // []
+        0x20 0x00 return
+    puzzle4:
+        0x04 calldataload   // [x]
+
+        PUZZLE_4()          // [r, s]
+
+        0x00 mstore         // [s]
+        0x20 mstore         // []
+        0x40 0x00 return
+
+    no_match:
+}
+
+#define macro MAIN() = takes (0) returns (0) {
+    0x00 calldataload 0xe0 shr
+    DISPATCHER_MAIN()
+    0x00 dup1 revert
+}

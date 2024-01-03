@@ -1,0 +1,73 @@
+/// @title Contract
+/// @notice SPDX-License-Identifier: MIT
+/// @notice Function logic for TownDefense & TownDefenseV2
+
+#define macro CALL_REINFORCEMENTS() = takes (1) returns (0) {
+    0x1111 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro FIRE_BALLISTA() = takes (1) returns (0) {
+    0x2222 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro LAUNCH_CATAPULT() = takes (1) returns (0) {
+    0x3333 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro ORDER_ARCHER() = takes (1) returns (0) {
+    0x4444 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro ORDER_SOLDIER() = takes (1) returns (0) {
+    0x5555 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro POUR_OIL() = takes (1) returns (0) {
+    0x6666 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro RAISE_WALL() = takes (1) returns (0) {
+    0x7777 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro REINFORCE_BARRIER() = takes (1) returns (0) {
+    0x8888 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro SEND_CAVALRY() = takes (1) returns (0) {
+    0x9999 xor
+
+    0x00 mstore
+    0x20 0x00 return
+}
+
+#define macro THROW_FIREPOT() = takes (1) returns (0) {
+    0xaaaa xor
+
+    0x00 mstore
+    0x20 0x00 return
+}

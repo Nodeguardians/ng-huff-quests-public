@@ -1,0 +1,5 @@
+/// @title HuffoorMage
+/// @notice SPDX-License-Identifier: MIT
+/// @notice A contract to defeat DarkHuffoor
+
+#define macro MAIN() = takes (0) returns (0) { }

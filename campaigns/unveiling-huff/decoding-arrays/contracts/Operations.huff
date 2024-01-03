@@ -1,0 +1,16 @@
+/// @title Operations
+/// @notice SPDX-License-Identifier: MIT
+
+#define error DeadlyPathError()
+
+#define macro DEFINE_PATH() = takes (0) returns (0) {
+    // IMPLEMENT HERE
+}
+
+#define macro GET_PATH() = takes (0) returns (0) {
+    // IMPLEMENT HERE
+}
+
+#define macro TRAVEL_PATH() = takes (0) returns (0) {
+    // IMPLEMENT HERE
+}

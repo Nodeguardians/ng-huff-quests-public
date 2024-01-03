@@ -1,0 +1,10 @@
+{
+    "name": "the-final-duel",
+    "version": "0.1.0",
+    "scripts": {
+        "test": "npm run build && forge test",
+        "build": "huffc contracts/HuffoorMage.huff -a -d artifacts/contracts/HuffoorMage.huff.json"
+    },
+    "author": "",
+    "license": "MIT"
+}

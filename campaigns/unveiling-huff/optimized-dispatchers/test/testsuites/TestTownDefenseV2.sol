@@ -17,6 +17,7 @@ abstract contract TestTownDefenseV2 is Test {
     error CallFailed(bytes4 selector);
     error InvalidSelectorPassed(bytes4 selector);
     error UnexpectedResult(bytes4 selector);
+    error NotEnoughGas(bytes4 selector);
 
     constructor(uint256 _gasLimit) {
         gasLimit = _gasLimit;
@@ -104,19 +105,32 @@ abstract contract TestTownDefenseV2 is Test {
     }
 
     function _test_selector(bytes4 selector) private {
+
+        // 1. Test without gas limit first
         bytes memory _calldata = abi.encodeWithSelector(selector);
 
-        (bool success, bytes memory actualData) = impl.call{ gas: gasLimit }(_calldata);
+        (bool success, bytes memory actualData) = impl.call(_calldata);
 
         if (!success) {
             revert CallFailed(selector);
         }
 
-        (, bytes memory expectedData) = impl.call(_calldata);
+        (, bytes memory expectedData) = ref.call(_calldata);
+        if (keccak256(actualData) != keccak256(expectedData)) {
+            revert UnexpectedResult(selector);
+        }
+
+        // 2. Test again, with gas limit
+        (success, actualData) = impl.call{ gas: gasLimit }(_calldata);
+
+        if (!success) {
+            revert NotEnoughGas(selector);
+        }
 
         if (keccak256(actualData) != keccak256(expectedData)) {
             revert UnexpectedResult(selector);
         }
+
     }
 
     function _test_invalid_selector(bytes4 selector) private {

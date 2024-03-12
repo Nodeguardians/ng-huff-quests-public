@@ -1,6 +1,6 @@
 {
     "name": "optimized-dispatchers",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "scripts": {
         "test": "npm run build && forge test",
         "build": "huffc contracts/TownDefense.huff -a -d artifacts/contracts/TownDefense.huff.json && huffc contracts/TownDefenseV2.huff -a -d artifacts/contracts/TownDefenseV2.huff.json"

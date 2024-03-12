@@ -83,7 +83,7 @@ abstract contract TestTownDefense is Test {
             revert CallFailed(selector);
         }
 
-        (, bytes memory expectedData) = impl.call(_calldata);
+        (, bytes memory expectedData) = ref.call(_calldata);
 
         if (keccak256(actualData) != keccak256(expectedData)) {
             revert UnexpectedResult(selector);
